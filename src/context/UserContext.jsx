@@ -1,5 +1,5 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
-import { fakeApi } from "../data/fakeApi"
+import { createContext, useContext, useReducer, useEffect } from 'react';
+import { fakeApi } from '../data/fakeApi'
 
 const UserContext = createContext(null);
 

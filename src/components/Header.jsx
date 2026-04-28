@@ -12,7 +12,7 @@ function Header({ onAddUser }) {
                 <p className='text-white/60 text-xs'>Kulanıcı Yönetim Paneli</p>
             </div>
             </div>
-            <Button variant='primary' onClick={onAddUser}>
+            <Button variant='danger-fill' onClick={onAddUser}>
                 + Yeni Kullanıcı
             </Button>
         </header>

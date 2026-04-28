@@ -4,10 +4,12 @@ import Header from '../components/Header'
 import SearchBar from '../components/SearchBar'
 import UserList from '../components/UserList'
 import Pagination from '../components/Pagination'
+import AddUserModal from '../components/AddUserModal'
 
 const USERS_PER_PAGE = 5
 
 function UsersPage() {
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const { users, loading, error, deleteUser } = useUsers()
   const [search, setSearch] = useState('')
   const [selectedRole, setSelectedRole] = useState('')
@@ -44,7 +46,7 @@ function UsersPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header onAddUser={() => {}} />
+      <Header onAddUser={() => setIsAddModalOpen(true)} />
       <main className="max-w-4xl mx-auto px-6 py-8">
         <div className="mb-6">
           <h1 className="text-lg font-medium text-gray-900">Kullanıcılar</h1>
@@ -86,6 +88,10 @@ function UsersPage() {
           </>
         )}
       </main>
+      <AddUserModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+      />
     </div>
   )
 }

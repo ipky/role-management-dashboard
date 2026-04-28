@@ -12,7 +12,7 @@ export const fakeApi = {
     
     addUser: async (user) => {
         await delay(500);
-        users = [...users, user];
+        users = [user, ...users];
         return [...users];
     },
 

@@ -7,10 +7,10 @@ function Header({ onAddUser }) {
                 <div className='w-8 h-8 bg-[#E8192C] rounded-full flex items-center justify-center'>
                     <span className='text-white text-xs font-medium'>AH</span>
                 </div>
-            </div>
-            <div>
+                 <div>
                 <p className='text-white text-sm font-medium'>Amerikan Hastanesi</p>
                 <p className='text-white/60 text-xs'>Kulanıcı Yönetim Paneli</p>
+            </div>
             </div>
             <Button variant='primary' onClick={onAddUser}>
                 + Yeni Kullanıcı

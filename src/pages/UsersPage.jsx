@@ -5,11 +5,14 @@ import SearchBar from '../components/SearchBar'
 import UserList from '../components/UserList'
 import Pagination from '../components/Pagination'
 import AddUserModal from '../components/AddUserModal'
+import EditUserModal from '../components/EditUserModal'
 
 const USERS_PER_PAGE = 5
 
 function UsersPage() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [selectedUser, setSelectedUser] = useState(null)
   const { users, loading, error, deleteUser } = useUsers()
   const [search, setSearch] = useState('')
   const [selectedRole, setSelectedRole] = useState('')
@@ -42,6 +45,11 @@ function UsersPage() {
 
   const handleDelete = async (id) => {
     await deleteUser(id)
+  }
+
+  const handleEdit = (user) => {
+    setSelectedUser(user)
+    setIsEditModalOpen(true)
   }
 
   return (
@@ -78,7 +86,7 @@ function UsersPage() {
             <UserList
               users={paginatedUsers}
               onDelete={handleDelete}
-              onEdit={() => {}}
+              onEdit={handleEdit}
             />
             <Pagination
               currentPage={currentPage}
@@ -91,6 +99,11 @@ function UsersPage() {
       <AddUserModal
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
+      />
+      <EditUserModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        user={selectedUser}
       />
     </div>
   )

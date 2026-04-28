@@ -22,7 +22,7 @@ export const fakeApi = {
         return [...users];
     },
 
-    updateUser: async(updateUser) => {
+    updateUser: async(updatedUser) => {
         await delay(500);
         users = users.map((user) => (user.id === updatedUser.id ? updatedUser : user));
         return [...users];

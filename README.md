@@ -1,16 +1,70 @@
-# React + Vite
+# Role Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bir sağlık kuruluşu için geliştirilmiş kullanıcı yönetim paneli. Admin, Doctor ve Patient rollerini destekler.
 
-Currently, two official plugins are available:
+## Kurulum ve Çalıştırma
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+# Bağımlılıkları yükle
+npm install
 
-## React Compiler
+# Geliştirme sunucusunu başlat
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Teknoloji Tercihleri
 
-## Expanding the ESLint configuration
+- **React + Vite** → Modern, hızlı geliştirme ortamı
+- **Context API + useReducer** → Merkezi state yönetimi. Projenin ölçeği Redux Toolkit gerektirmediğinden daha sade olan bu yapı tercih edildi.
+- **Tailwind CSS** → Utility-first CSS, hızlı ve tutarlı stil yönetimi
+- **Headless UI** → Erişilebilir Dialog (modal) ve Listbox (filtre dropdown) bileşenleri için kullanıldı
+- **Heroicons** → Headless UI ile uyumlu ikon seti
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Klasör Yapısı
+```
+src/
+├── components/
+│   ├── ui/
+│   │   ├── Badge.jsx       # Rol badge bileşeni
+│   │   └── Button.jsx      # Yeniden kullanılabilir buton
+│   ├── AddUserModal.jsx    # Kullanıcı ekleme modalı
+│   ├── EditUserModal.jsx   # Kullanıcı düzenleme modalı
+│   ├── Header.jsx          # Üst bar
+│   ├── Pagination.jsx      # Sayfalama
+│   ├── SearchBar.jsx       # Arama ve filtre
+│   ├── UserCard.jsx        # Tekil kullanıcı kartı
+│   └── UserList.jsx        # Kullanıcı listesi
+├── context/
+│   └── UserContext.jsx     # Global state yönetimi
+├── data/
+│   ├── fakeApi.js          # Mock API (setTimeout ile gecikme simülasyonu)
+│   └── initialUsers.js     # Başlangıç verileri, roller ve izinler
+└── pages/
+└── UsersPage.jsx       # Ana sayfa
+```
+
+## İsimlendirme Standardı
+
+- **Component dosyaları** → PascalCase (`UserCard.jsx`)
+- **Hook/util dosyaları** → camelCase (`fakeApi.js`)
+- **Klasörler** → camelCase (`components`, `context`)
+- **State yönetimi** → Context tek dosyada (`UserContext.jsx`), action tipleri string sabit olarak reducer içinde
+- **Import yolları** → Relative path, barrel kullanılmadı
+- **Commit formatı** → Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`)
+
+## Özellikler
+
+- Kullanıcı listeleme, ekleme, düzenleme, silme
+- İsim bazlı arama
+- Role göre filtreleme (Headless UI Listbox)
+- Çoklu izin atama (read, write, delete)
+- Pagination (sayfa başı 5 kullanıcı)
+- Form validasyonu (boş alan, aynı isim kontrolü)
+- Loading / Error / Empty state UI
+- Erişilebilirlik (aria-label, htmlFor, Headless UI)
+- useMemo ile arama/filtreleme optimizasyonu
+
+## Süre Notu
+
+Aktif geliştirme süresi: 4 gün (25-28 Nisan). 
+Öncesinde Context API + useReducer ve Headless UI araştırması yapıldı.
